@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "my-angular-ap": {
+    "s2": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/my-angular-ap",
+            "outputPath": "dist/s2",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -54,11 +54,6 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
                 }
               ]
             }
@@ -67,18 +62,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "my-angular-ap:build"
+            "browserTarget": "s2:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "my-angular-ap:build:production"
+              "browserTarget": "s2:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "my-angular-ap:build"
+            "browserTarget": "s2:build"
           }
         },
         "test": {
@@ -115,15 +110,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "my-angular-ap:serve"
+            "devServerTarget": "s2:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "my-angular-ap:serve:production"
+              "devServerTarget": "s2:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "my-angular-ap"
+  "defaultProject": "s2"
 }
