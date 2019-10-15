@@ -1,0 +1,98 @@
+<aside>
+    <div class="head-menu">
+            <a href="index.html" class="b-brand">
+                    <img src="assets/imgs/logoresized.png" alt="">
+                </a>
+        <div class="navbar-brand header-logo">
+            <!--<a href="index.html" class="b-brand">
+                <div class="b-bg">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <span class="b-title">Envios</span>
+                <img src="assets/imgs/logoresized.png" alt="">
+            </a>
+            <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>-->
+        </div>
+    </div>
+    <ul class="menu">
+        <!--<li class="divider">
+            <span>Menu</span>
+        </li>-->
+        <li routerLinkActive="active">
+            <a routerLink="/admin/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="hasmenu" routerLinkActive="active">
+            <a routerLink="/admin/shipments" routerLinkActive="active">
+                <i class="fas fa-shipping-fast"></i>
+                <span>Envíos</span>
+            </a>
+        </li>
+        <li routerLinkActive="active">
+            <a routerLink="/admin/packages" routerLinkActive="active">
+                <i class="fas fa-boxes"></i>
+                <span>Empaques</span>
+            </a>
+        </li>
+        <li routerLinkActive="active">
+                <a routerLink="/admin/locations" routerLinkActive="active">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Domicilios</span>
+                </a>
+            </li>
+        <!--<li>
+            <a routerLink="/admin/locations" routerLinkActive="active">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Domicilios</span>
+            </a>
+        </li>-->
+       <!-- <li class="divider">
+            <span>finance</span>
+        </li>-->
+        <li routerLinkActive="active">
+            <a routerLink="/admin/recharges" routerLinkActive="active">
+                <i class="fas fa-coins"></i>
+                <span>Recargas</span>
+            </a>
+        </li>
+        <li routerLinkActive="active">
+                <a routerLink="/admin/statements" routerLinkActive="active">
+                    <i class="fas fa-tasks"></i>
+                    <span>Estado de Cuenta</span>
+                </a>
+            </li>
+        <li routerLinkActive="active">
+            <a routerLink="/admin/invoices" routerLinkActive="active">
+                <i class="far fa-file-alt"></i>
+                <span>Facturas</span>
+            </a>
+        </li>
+        <!--<li class="divider">
+            <span>pick & pack</span>
+        </li>
+        <li>
+            <a routerLink="/admin/shipments" routerLinkActive="active">
+                <i class="fas fa-shipping-fast"></i>
+                <span>Pickups</span>
+            </a>
+        </li>
+        <li>
+            <a routerLink="/admin/shipments" routerLinkActive="active">
+                <i class="fas fa-shipping-fast"></i>
+                <span>Deliveries</span>
+            </a>
+        </li>-->
+       <!--<li class="divider">
+            <span>Support</span>
+        </li>-->
+        <li routerLinkActive="active">
+                <a (click)="signOut()">
+                    <i class="fas fa-power-off"></i>
+                    <span>Cerrar Sesión</span>
+                </a>
+            </li>
+        <li>
+    </ul>
+</aside>

@@ -1,0 +1,38 @@
+@import "../../../variables.scss";
+.card{
+    position: relative;
+    z-index: 20;
+    background: transparent;
+    border: 0;
+    filter:drop-shadow(2px 2px 5px rgba(0,0,0,.5));
+
+    .navbar{
+        position: relative;
+        z-index: 20000;
+        min-width: 0;
+        word-wrap: break-word;
+        background-clip: border-box;
+        background: #fff;
+        border-radius: 2rem;
+        color: $app-blue;
+    
+        .navbar-brand, .nav-link{
+            color: $app-blue;
+        }
+    }
+    .navbar-nav{
+        .nav-item{
+            color: $app-blue;
+        }
+        .nav-item.balance{
+            background: $app-blue;
+            border-radius: 30px;
+            a{
+                color: #fff;
+                b{
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,129 @@
+<!--<div class="d-md-flex h-md-100 align-items-center">
+    <div class="col-md-6 p-0 bg-indigo h-md-100">
+        <div class="text-white d-md-flex align-items-center h-100 text-center justify-content-center">
+            <div class="logoarea pt-5 pb-5">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 p-0 bg-white h-md-100 loginarea">
+        <div class="d-md-flex align-items-center h-md-100 p-5 justify-content-center">
+            <div class="row">
+                <div class="col-sm-8 offset-sm-2">
+                        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3>This is my title: {{business}}</h3>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-check form-check-inline text-center">
+                                <input class="form-check-input" type="radio" [value]="0" name="business"
+                                    [(ngModel)]="business" [ngModelOptions]="{standalone: true}">
+                                <label class="form-check-label" for="inlineRadio1">Individual</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-check form-check-inline text-center">
+                                <input class="form-check-input" type="radio" [value]="1" name="business"
+                                    [(ngModel)]="business" [ngModelOptions]="{standalone: true}">
+                                <label class="form-check-label" for="inlineRadio2">Empresarial</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <hr>
+                        </div>  
+                        <div class="form-group col-sm-6">
+                                <label for="name">Nombre</label>
+                                <input type="text" formControlName="name" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.name.errors.required">First Name is required</div>
+                                </div>
+                            </div> 
+                            <div class="form-group col-sm-6">
+                                    <label for="lastname">Apellido</label>
+                                    <input type="text" formControlName="lastname" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
+                                    <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                                        <div *ngIf="f.lastname.errors.required">First Name is required</div>
+                                    </div>
+                                </div>                      
+                            <div class="form-group" *ngIf="business == 1">
+                                
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" formControlName="lastName" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" formControlName="username" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                                    <div *ngIf="f.username.errors.required">Username is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" formControlName="password" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button [disabled]="loading" class="btn btn-primary">Register</button>
+                                <img *ngIf="loading"
+                                    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                <a [routerLink]="['/login']" class="btn btn-link">Cancel</a>
+                            </div>                        
+                    </div>
+                </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>-->
+<div class="content">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img src="assets/imgs/logoship2go.png" class="logo" alt="">
+                    </div>
+                    <div class="col-sm-4">
+    
+                    </div>
+                    <div class="col-sm-6 listContainer">
+                        <ul>
+                            <li><a  href="/register">Registro</a></li>
+                            <li><a  href="/login" class="text-red">Loginx</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><span class="text-red">¡Bienvenido</span> nuevamente!</h5>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-container">
+                            <i class="fas fa-envelope"></i>
+                            <input class="input-field" type="text" placeholder="Email" name="usrnm">
+                        </div>
+                        <div class="input-container">
+                            <i class="fas fa-lock-open"></i>
+                            <input class="input-field" type="password" placeholder="Contraseña" name="usrnm">
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-link text-uppercase text-white">¿Olvidaste tu contraseña?</a>
+                <a href="#" class="btn btn-login text-uppercase rounded-pill">Entrar</a>
+            </div>
+        </div>
+    </div>
