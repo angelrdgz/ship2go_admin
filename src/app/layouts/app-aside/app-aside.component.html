@@ -18,12 +18,6 @@
         <!--<li class="divider">
             <span>Menu</span>
         </li>-->
-        <li routerLinkActive="active">
-            <a routerLink="/admin/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <i class="fas fa-chart-line"></i>
-                <span>Dashboard</span>
-            </a>
-        </li>
         <li class="hasmenu" routerLinkActive="active">
             <a routerLink="/admin/shipments" routerLinkActive="active">
                 <i class="fas fa-shipping-fast"></i>
@@ -31,62 +25,11 @@
             </a>
         </li>
         <li routerLinkActive="active">
-            <a routerLink="/admin/packages" routerLinkActive="active">
+            <a routerLink="/admin/companies" routerLinkActive="active">
                 <i class="fas fa-boxes"></i>
-                <span>Empaques</span>
+                <span>Compañias</span>
             </a>
         </li>
-        <li routerLinkActive="active">
-                <a routerLink="/admin/locations" routerLinkActive="active">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Domicilios</span>
-                </a>
-            </li>
-        <!--<li>
-            <a routerLink="/admin/locations" routerLinkActive="active">
-                <i class="fas fa-map-marker-alt"></i>
-                <span>Domicilios</span>
-            </a>
-        </li>-->
-       <!-- <li class="divider">
-            <span>finance</span>
-        </li>-->
-        <li routerLinkActive="active">
-            <a routerLink="/admin/recharges" routerLinkActive="active">
-                <i class="fas fa-coins"></i>
-                <span>Recargas</span>
-            </a>
-        </li>
-        <li routerLinkActive="active">
-                <a routerLink="/admin/statements" routerLinkActive="active">
-                    <i class="fas fa-tasks"></i>
-                    <span>Estado de Cuenta</span>
-                </a>
-            </li>
-        <li routerLinkActive="active">
-            <a routerLink="/admin/invoices" routerLinkActive="active">
-                <i class="far fa-file-alt"></i>
-                <span>Facturas</span>
-            </a>
-        </li>
-        <!--<li class="divider">
-            <span>pick & pack</span>
-        </li>
-        <li>
-            <a routerLink="/admin/shipments" routerLinkActive="active">
-                <i class="fas fa-shipping-fast"></i>
-                <span>Pickups</span>
-            </a>
-        </li>
-        <li>
-            <a routerLink="/admin/shipments" routerLinkActive="active">
-                <i class="fas fa-shipping-fast"></i>
-                <span>Deliveries</span>
-            </a>
-        </li>-->
-       <!--<li class="divider">
-            <span>Support</span>
-        </li>-->
         <li routerLinkActive="active">
                 <a (click)="signOut()">
                     <i class="fas fa-power-off"></i>

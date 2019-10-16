@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {DataTableModule} from "angular-6-datatable";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +24,8 @@ import { AppContainerComponent } from './layouts/app-container/app-container.com
 import { AppLoaderComponent } from './layouts/app-loader/app-loader.component';
 
 import { ListComponent } from './shipments/list/list.component';
+import { ListCompaniesComponent } from './companies/list-companies/list-companies.component';
+import { EditCompanyComponent } from './companies/edit-company/edit-company.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { ListComponent } from './shipments/list/list.component';
     AppAsideComponent,
     AppContainerComponent,
     AppLoaderComponent,
-    ListComponent
+    ListComponent,
+    ListCompaniesComponent,
+    EditCompanyComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,7 @@ import { ListComponent } from './shipments/list/list.component';
     NgbModule,
     FormsModule,
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
+    DataTableModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

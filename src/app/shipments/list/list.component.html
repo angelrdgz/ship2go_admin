@@ -1,11 +1,16 @@
 <div class="card-body">
     <div class="row">
-        <div class="col-sm-9">
+        <div class="col-sm-4">
             <h5 class="card-title align-self-center">Envíos</h5>
         </div>
         <div class="col-sm-3">
-                <a routerLink="/admin/shipments/new" routerLinkActive="active"
-                class="btn btn-app btn-rounded btn-block">Generar Guía</a>
+            <input type="text" class="form-control" [(ngModel)]="search.trackingNumber" placeholder="Número de guía">
+        </div>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" [(ngModel)]="search.company" placeholder="Email de Usuario">
+        </div>
+        <div class="col-sm-2">
+            <a (click)="searchLabels()" class="btn btn-app btn-rounded btn-block">Buscar Guías</a>
         </div>
     </div>
     <div class="card">
@@ -24,22 +29,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let shipment of shipment">
+                    <tr *ngFor="let shipment of shipments">
                         <td>{{shipment.id}}</td>
                         <td>{{shipment.created_at | date:'medium' }}</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{shipment.origen.address}} {{shipment.origen.number}}. {{shipment.origen.district}}, {{shipment.origen.city}}, {{shipment.origen.state}}, {{shipment.origen.country}}</td>
+                        <td>{{shipment.destination.address}} {{shipment.destination.number}}. {{shipment.destination.district}}, {{shipment.destination.city}}, {{shipment.destination.state}}, {{shipment.destination.country}}</td>
                         <td>{{shipment.carrier}}</td>
                         <td>{{shipment.status}}</td>
                         <td>{{shipment.price | currency}}</td>
                         <td>
 
-                            <a routerLink="/admin/shipments/{{shipment.id}}" *ngIf="shipment.status !='CANCELLED'" routerLinkActive="active"
-                                class="btn btn-icon btn-rounded btn-info"><i class="fas fa-eye"></i></a>
+                            <a routerLink="/admin/shipments/{{shipment.id}}" *ngIf="shipment.status !='CANCELLED'"
+                                routerLinkActive="active" class="btn btn-icon btn-rounded btn-info"><i
+                                    class="fas fa-eye"></i></a>
                             <a href="{{shipment.label_url}}" *ngIf="shipment.status !='CANCELLED'" target="_blank"
                                 class="btn btn-icon btn-rounded btn-success"><i class="fas fa-download"></i></a>
-                            <button type="button" *ngIf="shipment.status !='CANCELLED' || shipment.picked == false" (click)="cancelShipment(shipment.id)"
-                                class="btn btn-icon btn-rounded btn-danger"><i
+                            <button type="button" *ngIf="shipment.status !='CANCELLED' || shipment.picked == false"
+                                (click)="cancelShipment(shipment.id)" class="btn btn-icon btn-rounded btn-danger"><i
                                     class="fas fa-trash"></i></button>
                         </td>
                     </tr>

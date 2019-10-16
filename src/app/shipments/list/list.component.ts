@@ -11,11 +11,25 @@ export class ListComponent implements OnInit {
 
   public shipments:any = [];
 
+  public search:any = {trackingNumber:'', company:''}
+
   constructor(private _apiService: ApiService) { }
 
   ngOnInit() {
     this.getShipments();
     console.log(this.shipments)    
+  }
+
+  searchLabels(){
+
+    this._apiService.searchLabels(this.search).subscribe(
+      data => { 
+        this.shipments = data.data
+      },
+      err => console.error(err),
+      () => console.log(this.shipments)
+    );
+
   }
 
   getShipments(){

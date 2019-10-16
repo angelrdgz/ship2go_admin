@@ -113,11 +113,16 @@ export class LoginComponent implements OnInit {
         console.log(err)
       },
       () => {
-        //console.log(this.data)
+        console.log(this.data)
+        
         this.loading = false;
+        if(this.data.user.type !== 1){
+          this.showSwal('error', 'Usted no tiene permisos suficientes')
+          return false;
+        }
         localStorage.setItem('user_ses', JSON.stringify(this.data.user))
         localStorage.setItem('token_user', this.data.api_key)
-        this.router.navigate(['admin/dashboard'])
+        this.router.navigate(['admin/shipments'])
       }
     );
   }

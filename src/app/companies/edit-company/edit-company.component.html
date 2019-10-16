@@ -1,0 +1,54 @@
+<div class="card-body">
+    <h5 class="card-title title">Actualizar Compañia</h5>
+    <div class="card card-transparent">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="text" [(ngModel)]="company.name" name="owner" class="form-control"
+                                placeholder="Nombre de la Compañia" />
+                        </div>
+                        <div class="col-sm-12">
+                            <input type="text" [(ngModel)]="company.address" name="owner" class="form-control"
+                                placeholder="Dirección de la compañia" />
+                        </div>
+                        <div class="col-sm-12">
+                            <input type="text" name="owner" [(ngModel)]="user.name"
+                                class="form-control" placeholder="Nombre del Propietario" />
+                        </div>
+                        <div class="col-sm-12">
+                            <input type="text" name="owner" [(ngModel)]="user.email"
+                                class="form-control" placeholder="Email del Propietario" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-sm-12">
+                        <input type="text" name="owner" [(ngModel)]="user.phone" class="form-control"
+                            placeholder="Teléfono del Propietario" />
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="password" name="owner" [(ngModel)]="user.password" class="form-control"
+                            placeholder="Nueva Contraseña" />
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="password" name="owner" [(ngModel)]="user.password_confirmation"
+                            class="form-control" placeholder="Confirmar Contraseña" />
+                    </div>
+                </div>
+                <div class="col-sm-3 offset-sm-3">
+                    <br>
+                        <button class="btn btn-app-gray btn-rounded btn-block"
+                            routerLink="/admin/companies">Cancelar</button>
+                    </div>
+                <div class="col-sm-3">
+                    <br>
+                    <div class="form-group">
+                        <button class="btn-app-red btn btn-rounded btn-block" (click)="updateCompany()">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

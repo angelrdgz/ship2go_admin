@@ -35,6 +35,30 @@ html {
     height: 100%;
     font-family: "Arial Rounded MT Bold" !important;
 
+    .pagination{
+      width: 100% !important;
+      margin:0 auto !important;
+
+      .page-item{
+        border-radius: 50%;
+        display: inline-block;
+        margin: 0 5px;
+        .page-link{
+          border-radius: 50%;
+          color: $app-blue;
+        }
+      }
+
+      .page-item.active{
+        border-radius: 50%;
+        .page-link{
+          border-radius: 50%;
+          background: $app-blue;
+          color:#fff;
+        }
+      }
+    }
+
     .card-title {
       color: $app-blue;
     }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
 const ApiEndpoint = environment.APIEndpoint;
 
@@ -11,23 +11,23 @@ const httpOptions = {
 
 interface Res {
   status: string;
-  data:any;
+  data: any;
 }
 
-interface Invoice{
+interface Invoice {
   status: string;
-  data:any;
-  message:any;
+  data: any;
+  message: any;
 }
 
 interface Shipment {
   rates: string;
-  shipment_id:number;
+  shipment_id: number;
 }
 
 interface User {
-  api_key:any;
-  user:any;
+  api_key: any;
+  user: any;
 }
 
 @Injectable({
@@ -35,173 +35,194 @@ interface User {
 })
 export class ApiService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  quote(data){
-    return this.http.post<Res>(ApiEndpoint+'/rates', data, httpOptions);
+  searchLabels(data) {
+    return this.http.post<Res>(ApiEndpoint + '/search-labels', data, httpOptions);
   }
 
-  quoteSite(data){
-    return this.http.post<Res>(ApiEndpoint+'/site/rates', data, httpOptions);
+  getCompanies() {
+    return this.http.get<Res>(ApiEndpoint + '/companies', httpOptions);
   }
 
-  login(data):Observable<User>{
-    return this.http.post<User>(ApiEndpoint+'/auth/login', data);
+  getCompany(id){
+    return this.http.get<Res>(ApiEndpoint + '/companies/'+id, httpOptions);
   }
 
-  logout(){
-    return this.http.get<Res>(ApiEndpoint+'/auth/logout');
+  updateCompany(id, data){
+    return this.http.put<Res>(ApiEndpoint + '/companies/'+id, data, httpOptions);
   }
 
-  register(data):Observable<Res>{
-    return this.http.post<Res>(ApiEndpoint+'/auth/register', data);
+  activeCompany(id) {
+    return this.http.get<Res>(ApiEndpoint + '/active-company/'+id, httpOptions);
   }
 
-  forgotPassword(data):Observable<Res>{
-    return this.http.post<Res>(ApiEndpoint+'/auth/forgot-password', data);
+  unactiveCompany(id) {
+    return this.http.get<Res>(ApiEndpoint + '/unactive-company/'+id, httpOptions);
+
   }
 
-  resendEmail(data):Observable<Res>{
-    return this.http.post<Res>(ApiEndpoint+'/auth/resend-email', data);
+  quoteSite(data) {
+    return this.http.post<Res>(ApiEndpoint + '/site/rates', data, httpOptions);
   }
 
-  contact(data):Observable<Res>{
-    return this.http.post<Res>(ApiEndpoint+'/auth/contact', data);
-  }
-  
-  newPassword(data):Observable<Res>{
-    return this.http.post<Res>(ApiEndpoint+'/auth/restore-password', data);
-  }
-  
-  activeAccount(hash):Observable<User>{
-    return this.http.get<User>(ApiEndpoint+'/auth/active-account/'+hash);
+  login(data): Observable<User> {
+    return this.http.post<User>(ApiEndpoint + '/auth/login', data);
   }
 
-  updateProfile(data):Observable<Res>{
-    return this.http.put<Res>(ApiEndpoint+'/profile', data);
+  logout() {
+    return this.http.get<Res>(ApiEndpoint + '/auth/logout');
   }
 
-  getDashboard(month){
-    return this.http.get<Res>(ApiEndpoint+'/dashboard?month='+month);
-  }  
-
-  businessInfo(data):Observable<Res>{
-    return this.http.post<Res>(ApiEndpoint+'/auth/business-info', data);
+  register(data): Observable<Res> {
+    return this.http.post<Res>(ApiEndpoint + '/auth/register', data);
   }
 
-  getConfiguration():Observable<Res>{
-    return this.http.get<Res>(ApiEndpoint+'/configurations');
+  forgotPassword(data): Observable<Res> {
+    return this.http.post<Res>(ApiEndpoint + '/auth/forgot-password', data);
   }
 
-  updateConfiguration(data):Observable<Res>{
-    return this.http.put<Res>(ApiEndpoint+'/configurations', data);
+  resendEmail(data): Observable<Res> {
+    return this.http.post<Res>(ApiEndpoint + '/auth/resend-email', data);
   }
 
-  getBusinessInfo():Observable<Res>{
-    return this.http.get<Res>(ApiEndpoint+'/auth/business-info');
+  contact(data): Observable<Res> {
+    return this.http.post<Res>(ApiEndpoint + '/auth/contact', data);
+  }
+
+  newPassword(data): Observable<Res> {
+    return this.http.post<Res>(ApiEndpoint + '/auth/restore-password', data);
+  }
+
+  activeAccount(hash): Observable<User> {
+    return this.http.get<User>(ApiEndpoint + '/auth/active-account/' + hash);
+  }
+
+  updateProfile(data): Observable<Res> {
+    return this.http.put<Res>(ApiEndpoint + '/profile', data);
+  }
+
+  getDashboard(month) {
+    return this.http.get<Res>(ApiEndpoint + '/dashboard?month=' + month);
+  }
+
+  businessInfo(data): Observable<Res> {
+    return this.http.post<Res>(ApiEndpoint + '/auth/business-info', data);
+  }
+
+  getConfiguration(): Observable<Res> {
+    return this.http.get<Res>(ApiEndpoint + '/configurations');
+  }
+
+  updateConfiguration(data): Observable<Res> {
+    return this.http.put<Res>(ApiEndpoint + '/configurations', data);
+  }
+
+  getBusinessInfo(): Observable<Res> {
+    return this.http.get<Res>(ApiEndpoint + '/auth/business-info');
   }
 
   getShipments() {
-    return this.http.get<Res>(ApiEndpoint+'/shipments');
+    return this.http.get<Res>(ApiEndpoint + '/shipments');
   }
 
-  getNeights(data){
-    return this.http.post<Res>(ApiEndpoint+'/ezcmd/get-locations', data);
+  getNeights(data) {
+    return this.http.post<Res>(ApiEndpoint + '/ezcmd/get-locations', data);
   }
 
-  createShipment(data){
-    return this.http.post<Shipment>(ApiEndpoint+'/shipments', data);
+  createShipment(data) {
+    return this.http.post<Shipment>(ApiEndpoint + '/shipments', data);
   }
 
-  createLabel(data){
-    return this.http.post<Res>(ApiEndpoint+'/shipments/create-label', data);
+  createLabel(data) {
+    return this.http.post<Res>(ApiEndpoint + '/shipments/create-label', data);
   }
 
-  cancelShipment(id){
-    return this.http.delete<Res>(ApiEndpoint+'/shipments/'+id);
+  cancelShipment(id) {
+    return this.http.delete<Res>(ApiEndpoint + '/shipments/' + id);
   }
 
-  getShipment(id){
-    return this.http.get<Res>(ApiEndpoint+'/shipments/'+id);
+  getShipment(id) {
+    return this.http.get<Res>(ApiEndpoint + '/shipments/' + id);
   }
 
-  shipmentTracking(id){
-    return this.http.get<Res>(ApiEndpoint+'/tracking/'+id);
+  shipmentTracking(id) {
+    return this.http.get<Res>(ApiEndpoint + '/tracking/' + id);
   }
 
-  getRecharges(){
-    return this.http.get<Res>(ApiEndpoint+'/recharges');
+  getRecharges() {
+    return this.http.get<Res>(ApiEndpoint + '/recharges');
   }
 
-  makePayment(data){
-    return this.http.post<Res>(ApiEndpoint+'/recharges', data);
+  makePayment(data) {
+    return this.http.post<Res>(ApiEndpoint + '/recharges', data);
   }
 
-  createInvoice(id){
-    return this.http.post<Res>(ApiEndpoint+'/recharges/'+id+'/invoice', {});
+  createInvoice(id) {
+    return this.http.post<Res>(ApiEndpoint + '/recharges/' + id + '/invoice', {});
   }
 
-  getInvoices(month){
-    return this.http.get<Res>(ApiEndpoint+'/invoices?month='+month);
+  getInvoices(month) {
+    return this.http.get<Res>(ApiEndpoint + '/invoices?month=' + month);
   }
 
-  downloadInvoice(id, type){
-    return this.http.get<Res>(ApiEndpoint+'/invoices/'+id+'?type='+type);
+  downloadInvoice(id, type) {
+    return this.http.get<Res>(ApiEndpoint + '/invoices/' + id + '?type=' + type);
   }
 
-  cancelInvoice(id){
-    return this.http.delete<Invoice>(ApiEndpoint+'/invoices/'+id);
+  cancelInvoice(id) {
+    return this.http.delete<Invoice>(ApiEndpoint + '/invoices/' + id);
   }
 
-  getLogbook(month){
-    return this.http.get<Res>(ApiEndpoint+'/logbooks?month='+month);
+  getLogbook(month) {
+    return this.http.get<Res>(ApiEndpoint + '/logbooks?month=' + month);
   }
 
   getPackages() {
-    return this.http.get<Res>(ApiEndpoint+'/packages');
+    return this.http.get<Res>(ApiEndpoint + '/packages');
   }
 
   getPackage(id) {
-    return this.http.get<Res>(ApiEndpoint+'/packages/'+id);
+    return this.http.get<Res>(ApiEndpoint + '/packages/' + id);
   }
 
-  savePackage(data){
-    return this.http.post<Res>(ApiEndpoint+'/packages', data);
+  savePackage(data) {
+    return this.http.post<Res>(ApiEndpoint + '/packages', data);
   }
 
-  updatePackage(id, data){
-    return this.http.put<Res>(ApiEndpoint+'/packages/'+id, data);
+  updatePackage(id, data) {
+    return this.http.put<Res>(ApiEndpoint + '/packages/' + id, data);
   }
 
-  deletePackage(id){
-    return this.http.delete<Res>(ApiEndpoint+'/packages/'+id);
+  deletePackage(id) {
+    return this.http.delete<Res>(ApiEndpoint + '/packages/' + id);
   }
 
-  getOrigenes(){
-    return this.http.get<Res>(ApiEndpoint+'/locations/origenes');
-  }
-  
-  getDestinations(){
-    return this.http.get<Res>(ApiEndpoint+'/locations/destinations');
+  getOrigenes() {
+    return this.http.get<Res>(ApiEndpoint + '/locations/origenes');
   }
 
-  getLocation(id){
-    return this.http.get<Res>(ApiEndpoint+'/locations/'+id);
+  getDestinations() {
+    return this.http.get<Res>(ApiEndpoint + '/locations/destinations');
   }
 
-  deleteLocation(id){
-    return this.http.delete<Res>(ApiEndpoint+'/locations/'+id);
+  getLocation(id) {
+    return this.http.get<Res>(ApiEndpoint + '/locations/' + id);
   }
 
-  getCountries(){
-    return this.http.get<Res>(ApiEndpoint+'/countries');
+  deleteLocation(id) {
+    return this.http.delete<Res>(ApiEndpoint + '/locations/' + id);
   }
 
-  getStates(code){
-    return this.http.get<Res>(ApiEndpoint+'/states?country_code='+code);
+  getCountries() {
+    return this.http.get<Res>(ApiEndpoint + '/countries');
   }
 
-  getCarriers(code){
-    return this.http.get<Res>(ApiEndpoint+'/carriers?country_code='+code);
+  getStates(code) {
+    return this.http.get<Res>(ApiEndpoint + '/states?country_code=' + code);
+  }
+
+  getCarriers(code) {
+    return this.http.get<Res>(ApiEndpoint + '/carriers?country_code=' + code);
   }
 }

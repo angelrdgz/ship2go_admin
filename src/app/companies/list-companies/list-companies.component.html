@@ -1,0 +1,62 @@
+<div class="card-body">
+        <div class="row">
+            <div class="col-sm-4">
+                <h5 class="card-title align-self-center">Compañias</h5>
+            </div>
+            <!--<div class="col-sm-3">
+                <input type="text" class="form-control" [(ngModel)]="search.trackingNumber" placeholder="Número de guía">
+            </div>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" [(ngModel)]="search.company" placeholder="Email de Usuario">
+            </div>
+            <div class="col-sm-2">
+                <a (click)="searchLabels()" class="btn btn-app btn-rounded btn-block">Buscar Guías</a>
+            </div>-->
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <table class="table" [mfData]="companies" #mf="mfDataTable" [mfRowsOnPage]="10">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Dueño</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Télefono</th>
+                            <th scope="col">Saldo</th>
+                            <th style="min-width:200px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let company of mf.data">
+                            <td>{{company.name}}</td>
+                            <td>{{company.user.name}}</td>
+                            <td>{{company.user.email}}</td>
+                            <td>{{company.user.phone}}</td>
+                            <td>{{company.balance | currency}}</td>
+                            <td>    
+                                <a routerLink="/admin/companies/{{company.id}}" routerLinkActive="active" class="btn btn-icon btn-rounded btn-warning">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <button type="button" *ngIf="company.status == 0" (click)="activeCompany(company.id)" class="btn btn-icon btn-rounded btn-success">
+                                        <i class="fas fa-redo-alt"></i>
+                                </button>
+                                <button type="button" *ngIf="company.status == 1" (click)="unactiveCompany(company.id)" class="btn btn-icon btn-rounded btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr *ngIf="companies.length == 0">
+                            <td colspan="8" class="text-center">No se encontraron guías</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
