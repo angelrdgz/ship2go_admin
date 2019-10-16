@@ -15,9 +15,7 @@ export class ListComponent implements OnInit {
 
   constructor(private _apiService: ApiService) { }
 
-  ngOnInit() {
-    this.getShipments();
-    console.log(this.shipments)    
+  ngOnInit() {  
   }
 
   searchLabels(){
