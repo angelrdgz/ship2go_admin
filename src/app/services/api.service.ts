@@ -41,6 +41,14 @@ export class ApiService {
     return this.http.post<Res>(ApiEndpoint + '/search-labels', data, httpOptions);
   }
 
+  pickShipment(id){
+    return this.http.post<Res>(ApiEndpoint + '/pick-shipment', {id: id}, httpOptions);
+  }
+
+  refundShipment(id){
+    return this.http.post<Res>(ApiEndpoint + '/refund-shipment', {id: id}, httpOptions);
+  }
+
   getCompanies() {
     return this.http.get<Res>(ApiEndpoint + '/companies', httpOptions);
   }

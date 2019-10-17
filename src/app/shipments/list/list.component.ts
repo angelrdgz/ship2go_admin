@@ -11,11 +11,75 @@ export class ListComponent implements OnInit {
 
   public shipments:any = [];
 
-  public search:any = {trackingNumber:'', company:''}
+  public search:any = {trackingNumber:'', company:'angelrodriguez@ucol.mx'}
 
   constructor(private _apiService: ApiService) { }
 
   ngOnInit() {  
+  }
+
+  pickShipment(id){
+
+    this._apiService.pickShipment(id).subscribe(
+      data => { 
+        console.log(data)
+        if(data.data.meta == 'error'){
+          Swal.fire(
+            'Error',
+            data.data.error.message,
+            'error'
+          )
+        }else{
+          this.updateSpipment(id, data.data)
+          Swal.fire(
+            'Éxito',
+            'Recolección agendada.',
+            'success'
+          )
+
+        }
+      },
+      err => console.error(err),
+      () => ""
+    );
+
+  }
+
+  refundShipment(id){
+
+    Swal.fire({
+      title: '¿Desea reembolsar?',
+      text: 'La compañia o el usuario recuperara el costo de la guía cancelada',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.value) {
+        this._apiService.refundShipment(id).subscribe(
+          data => { 
+            if(data.data.meta == 'error'){
+              Swal.fire(
+                'Error',
+                data.data.error.message,
+                'error'
+              )
+            }else{
+              this.updateSpipment(id, data.data)
+              Swal.fire(
+                'Éxito',
+                'Su guía ha sido cancelada correctamente.',
+                'success'
+              )
+
+            }
+          },
+          err => console.error(err),
+          () => ""
+        );
+      }
+    })
+
   }
 
   searchLabels(){
@@ -38,6 +102,15 @@ export class ListComponent implements OnInit {
     );
   }
 
+  updateSpipment(id, data) {
+    for (let index = 0; index < this.shipments.length; index++) {
+      if(this.shipments[index].id == id){
+        this.shipments[index] = data;
+        break
+      }
+    }
+  }
+
   cancelShipment(id){
     Swal.fire({
       title: '¿Desea cancelar?',
@@ -50,7 +123,6 @@ export class ListComponent implements OnInit {
       if (result.value) {
         this._apiService.cancelShipment(id).subscribe(
           data => { 
-            console.log(data)
             if(data.data.meta == 'error'){
               Swal.fire(
                 'Error',
@@ -58,6 +130,7 @@ export class ListComponent implements OnInit {
                 'error'
               )
             }else{
+              this.updateSpipment(id, data.data)
               Swal.fire(
                 'Éxito',
                 'Su guía ha sido cancelada correctamente.',
@@ -69,9 +142,6 @@ export class ListComponent implements OnInit {
           err => console.error(err),
           () => ""
         );
-        
-      // For more information about handling dismissals please visit
-      // https://sweetalert2.github.io/#handling-dismissals
       }
     })
   }
